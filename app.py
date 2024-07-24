@@ -12,7 +12,6 @@ def download_model():
     gdown.download(url, output, quiet=False)
 
 # Function to load the model
-@st.cache_resource
 def load_model():
     model_path = 'best_vgg19.h5'
     if not os.path.exists(model_path):
@@ -20,12 +19,13 @@ def load_model():
     model = tf.keras.models.load_model(model_path)
     return model
 
-# Load the model
-model = load_model()
-
 # Streamlit app
 st.title("Image Classification with VGG19 Model")
 st.write("Upload an image to classify")
+
+# Load the model and cache it manually
+if 'model' not in st.session_state:
+    st.session_state.model = load_model()
 
 # Upload image
 uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
@@ -44,7 +44,7 @@ if uploaded_file is not None:
     img_array = tf.keras.applications.vgg19.preprocess_input(img_array)
 
     # Make prediction
-    predictions = model.predict(img_array)
+    predictions = st.session_state.model.predict(img_array)
     decoded_predictions = tf.keras.applications.vgg19.decode_predictions(predictions, top=3)[0]
 
     st.write("Predictions:")
