@@ -3,18 +3,21 @@ import tensorflow as tf
 from tensorflow.keras.models import load_model
 import numpy as np
 from PIL import Image
+import requests
+from io import BytesIO
 import gdown
-import os
 
-
-@st.cache_resource
-def download_model():
+# Function to download the model from Google Drive
+@st.cache(allow_output_mutation=True)
+def load_model():
     url = 'https://drive.google.com/uc?id=1whdEzMezUmvfBA8UtsQ4eeao2VPbBHc9'
     output = 'best_vgg19.h5'
     gdown.download(url, output, quiet=False)
-    return load_model(output)
+    model = tf.keras.models.load_model(output)
+    return model
 
-model = download_model()
+# Load the model
+model = load_model()
 
 # Streamlit app
 st.title("Image Classification with VGG19 Model")
