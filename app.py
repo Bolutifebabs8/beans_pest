@@ -14,9 +14,10 @@ def download_model():
 # Function to load the model
 @st.cache_resource
 def load_model():
-    if not os.path.exists('best_vgg19.h5'):
+    model_path = 'best_vgg19.h5'
+    if not os.path.exists(model_path):
         download_model()
-    model = tf.keras.models.load_model('best_vgg19.h5')
+    model = tf.keras.models.load_model(model_path)
     return model
 
 # Load the model
