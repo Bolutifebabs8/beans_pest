@@ -1,6 +1,5 @@
 import streamlit as st
 import tensorflow as tf
-from tensorflow.keras.models import load_model
 import numpy as np
 from PIL import Image
 import gdown
@@ -13,7 +12,7 @@ def download_model():
     gdown.download(url, output, quiet=False)
 
 # Function to load the model
-@st.cache(allow_output_mutation=True)
+@st.cache_resource
 def load_model():
     if not os.path.exists('best_vgg19.h5'):
         download_model()
