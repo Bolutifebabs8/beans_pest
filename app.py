@@ -5,22 +5,15 @@ from PIL import Image
 import gdown
 import os
 
-# Function to download the model from Google Drive
+
+@st.cache_resource
 def download_model():
     url = 'https://drive.google.com/uc?id=1whdEzMezUmvfBA8UtsQ4eeao2VPbBHc9'
     output = 'best_vgg19.h5'
     gdown.download(url, output, quiet=False)
+    return load_model(output)
 
-# Function to load the model
-@st.cache(allow_output_mutation=True)
-def load_model():
-    if not os.path.exists('best_vgg19.h5'):
-        download_model()
-    model = tf.keras.models.load_model('best_vgg19.h5')
-    return model
-
-# Load the model
-model = load_model()
+model = download_model()
 
 # Streamlit app
 st.title("Image Classification with VGG19 Model")
