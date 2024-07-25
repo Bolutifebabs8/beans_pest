@@ -41,7 +41,7 @@ if uploaded_file is not None:
 
     predictions = predict_image(image, model)
 
-    # Assuming the model outputs probabilities for each class
-    classes = ['Class1', 'Class2', 'Class3']  # Update these with actual class names
+    # Classes based on the provided image
+    classes = ['weevil', 'wasp', 'snail', 'slug', 'moth', 'grasshopper', 'earwig', 'earthworms', 'caterpillar', 'beetle', 'bees', 'ants']
     predicted_class = classes[np.argmax(predictions)]
     st.write(f'Prediction: {predicted_class}')
