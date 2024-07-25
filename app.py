@@ -24,8 +24,8 @@ def preprocess_image(image):
 def predict_image(image, model):
     processed_image = preprocess_image(image)
     prediction = model.predict(processed_image)
-    decoded_predictions = tf.keras.applications.vgg19.decode_predictions(prediction, top=3)[0]
-    return decoded_predictions
+    #decoded_predictions = tf.keras.applications.vgg19.decode_predictions(prediction, top=3)[0]
+    return prediction
 
 st.title("Image Classification with VGG19 Model")
 
