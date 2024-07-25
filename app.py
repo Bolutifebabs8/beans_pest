@@ -27,7 +27,7 @@ def predict_image(image, model):
     #decoded_predictions = tf.keras.applications.vgg19.decode_predictions(prediction, top=3)[0]
     return prediction
 
-st.title("Image Classification with VGG19 Model")
+st.title("Agricultural pest classification")
 
 uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
 
@@ -39,6 +39,6 @@ if uploaded_file is not None:
 
     predictions = predict_image(image, model)
 
-    st.write("Predictions:")
-    for i, (imagenet_id, label, score) in enumerate(predictions):
-        st.write(f"{i+1}: {label} ({score*100:.2f}%)")
+    st.write("Predictions:" predictions)
+    #for i, (imagenet_id, label, score) in enumerate(predictions):
+     #   st.write(f"{i+1}: {label} ({score*100:.2f}%)")
