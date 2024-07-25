@@ -39,6 +39,6 @@ if uploaded_file is not None:
 
     predictions = predict_image(image, model)
 
-    st.write("Predictions:" predictions)
+    st.write("Predictions:", predictions)
     #for i, (imagenet_id, label, score) in enumerate(predictions):
      #   st.write(f"{i+1}: {label} ({score*100:.2f}%)")
