@@ -29,7 +29,7 @@ def predict_image(image, model):
     prediction = model.predict(processed_image)
     return prediction
 
-st.title("Agricultural Pests Detection")
+st.title("Beans Pest Detection")
 
 uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
 
@@ -44,4 +44,4 @@ if uploaded_file is not None:
     # Classes based on the provided image
     classes = ['weevil', 'wasp', 'snail', 'slug', 'moth', 'grasshopper', 'earwig', 'earthworms', 'caterpillar', 'beetle', 'bees', 'ants']
     predicted_class = classes[np.argmax(predictions)]
-    st.write(f'Prediction: {predicted_class}')
+    st.write(f'Prediction: Pest Detected')
