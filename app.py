@@ -17,6 +17,7 @@ def download_and_load_model():
 model = download_and_load_model()
 
 def preprocess_image(image):
+    image = image.convert('RGB')  # Convert to RGB
     image = image.resize((224, 224))
     image = np.array(image)
     image = image / 255.0  # Normalize the image
